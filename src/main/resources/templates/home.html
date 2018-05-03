@@ -57,7 +57,8 @@
                 <li th:case="${true}" ><span style="size:10px" sec:authentication="name"/>
                     <form class="navbar-right" th:action="@{/logout}" method="get">
                     <button class="btn btn-md btn-danger" name="registration" type="Submit">Шығу</button>
-                </form></li>
+                    </form>
+                </li>
             </ul>
         </div>
 
@@ -82,7 +83,7 @@
             <div class="col-md-6 col-sm-12">
                 <div class="home-video">
                     <div class="embed-responsive embed-responsive-16by9">
-                        <iframe src="https://youtube.com/UsnDPok1ZOU" frameborder="0" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/UsnDPok1ZOU" frameborder="0" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -332,13 +333,13 @@
                                         <input type="text" class="form-control" th:field="*{login}" name="login" placeholder="login" required>
                                         <input type="email" class="form-control" name="email" th:field="*{email}" placeholder="Email" required>
                                         <input type="password" class="form-control" name="password" th:field="*{password}" placeholder="Password" required>
-                                        <input type="submit" class="form-control" name="submit" value="Тіркелу Button">
+                                        <input type="submit" class="form-control" name="submit" value="Тіркелу">
                                     </form>
                                 </div>
 
                                 <div role="tabpanel" class="tab-pane fade in" id="sign_in">
                                     <form th:action="@{/login}" method="POST">
-                                        <input type="login" id="login "class="form-control" name="login" placeholder="login" required>
+                                        <input type="text" id="login" class="form-control" name="login" placeholder="Login" required>
                                         <input type="password" id="password" class="form-control" name="password" placeholder="Password" required>
                                         <input type="submit" class="form-control" name="submit" value="Кіру">
                                     </form>

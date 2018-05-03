@@ -38,21 +38,8 @@ public class HomeController {
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
-        User userExists = userService.findUserByLogin(user.getLogin());
-        if (userExists != null) {
-            bindingResult
-                    .rejectValue("login", "error.user",
-                            "Сіз жазған логин бар");
-        }
-        if (bindingResult.hasErrors()) {
-            modelAndView.setViewName("registration");
-        } else {
             userService.saveUser(user);
-            modelAndView.addObject("successMessage", "Тіркелу сәтті өтті");
-            modelAndView.addObject("user", new User());
             modelAndView.setViewName("home");
-
-        }
         return modelAndView;
     }
 
