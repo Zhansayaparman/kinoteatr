@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Кино</title>
+    <!--MY css and js-->
+    <link rel="icon" href="/ico/favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<div class="container">
+    <div class="page-header" id="banner">
+        <div class="row" sec:authorize="hasAuthority('ADMIN')">
+            <div class="col-lg-8 col-md-7 col-sm-6">
+                <h1>Киноны косу</h1>
+                <form class="needs-validation" novalidate th:action="@{/addkino}" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <select multiple class="form-control" name="prodIId" required>
+                            <option th:each="prod : ${producers}"
+                                    th:value="${prod.prodId}"
+                                    th:text="${prod.firstName}">Club</option>
+                        </select>
+                        <div class="invalid-feedback">Бір режиссер тандаңыз</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Аты</label>
+                        <input type="text" class="form-control" id="name" name="fullName" required/>
+                        <div class="invalid-feedback">Киноның атын енгізіңіз</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="genre">Жанр</label>
+                        <input type="text" class="form-control" id="genre" name="genre" required/>
+                        <div class="invalid-feedback">Жанрды енгізіңіз</div>
+                    </div>
+                    <button type="submit" class="btn btn-default" id="submit">қосу</button>
+                </form>
+            </div>
+        </div>
+        <div class="form-row" sec:authorize="hasAuthority('ADMIN')">
+            <h1>Режиссер косу</h1>
+            <form class="needs-validation" novalidate action="#" th:action="@{/addprod}" th:object="${prod}" method="post">
+                <label for="first_name">Режиссердің аты</label>
+                <input type="text" id="first_name" th:field="*{firstName}" class="form-control" required/>
+                <div class="invalid-feedback">Атын енгізіңіз</div>
+
+                <label for="last_name">Тегі</label>
+                <input type="text" id="last_name" th:field="*{lastName}" class="form-control" required/>
+                <div class="invalid-feedback">Тегін енгізіңіз</div>
+
+                <label for="country">Туған жері</label>
+                <input type="text" id="country" th:field="*{countryOfBirth}" class="form-control" required/>
+                <div class="invalid-feedback">Туған жерін енгізіңіз</div>
+
+                <br/>
+                <button type="submit" class="btn btn-outline-success">Қосу</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+</body>
+</html>
