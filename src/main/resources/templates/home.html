@@ -288,7 +288,7 @@
                             <p>Call us <span>8707745224</span></p>
                         </div>
                         <ul class="social-icon">
-                            <li><a href="/films" class="fas fa-film" attr="facebook icon"></a></li>
+                            <li><a sec:authorize="hasAnyAuthority('ADMIN')" href="/films" class="fas fa-film" attr="facebook icon"></a></li>
                             <li><a href="" class="fa fa-twitter"></a></li>
                             <li><a href="#" class="fa fa-instagram"></a></li>
                         </ul>
